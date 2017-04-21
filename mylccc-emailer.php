@@ -81,16 +81,20 @@ run_mylccc_emailer();
 	*/
 
 /* Check if scripts are enqueued or not */
-	if ( wp_script_is( 'jquery-ui-datepicker', 'enqueued' ) ) {
-		return;
-	} else {
+	//if ( wp_script_is( 'jquery-ui-datepicker', 'enqueued' ) ) {
+	//	return;
+	//} else {
+  function lc_emailer_styles(){
 		wp_enqueue_script( 'jquery-ui-datepicker' );
 		wp_enqueue_script( 'jquery-ui-core' );
-		wp_enqueue_style('jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
-	}
+		wp_enqueue_style( 'jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
+   }
+  add_action( 'wp_enqueue_scripts', 'lc_emailer_styles' );
+	//}
 
 
  /* Load Plugin logic */
 
 	require_once( plugin_dir_path( __FILE__ ) . 'php/email-post-type.php' );
 	require_once( plugin_dir_path( __FILE__ ) . 'php/email-metabox.php' );
+ require_once( plugin_dir_path( __FILE__ ) . 'php/email-notification.php' );
