@@ -3,25 +3,10 @@
 
  // Send email when post is published.
 
- function lc_send_email($post_id){
-  if( 'publish' != get_post_status($post_id) && 'mylccc_email' == get_post_type() ){
-   echo '<center><h1>hello</h1></center>';
-   $post_date = esc_attr( get_post_meta( $post_id, 'lc_emailer_post_date', true ) );
-   $message = 'Hello!';
-   wp_mail('jquerin@lorainccc.edu', 'Test Email', $message);
-  }
- }
-
- //add_action( 'save_post', 'lc_send_email', 10, 2 );
-
-   echo '<center><h1>hello</h1></center>';
-
-
-
-/*class lc_email_notify {
+class lc_email_notify {
 
  public function __construct(){
-  
+
    // change mail type to HTML
   function lc_change_mail_type(){
    return 'text/html';
@@ -39,26 +24,26 @@
    return 'Word Press AWS Notifications';
   }
 
-  add_filter( 'wp_mail_from_name', 'lc_change_from_name' ); 
+  add_filter( 'wp_mail_from_name', 'lc_change_from_name' );
 
-   add_action( 'plugins_loaded', array( $this, 'lc_test_notify' ) );
-  }
+  //add_action( 'plugins_loaded', array( $this, 'lc_send_email' ) );
+ function lc_send_email($post_id){
+  //if( 'mylccc_email' == $post->post_type ){
+   //$post_date = esc_attr( get_post_meta( $post_id, 'lc_emailer_post_date', true ) );
 
-  function lc_test_notify(){
-   $message = 'Hello!';
-   $sent_message = wp_mail('jquerin@lorainccc.edu', 'Test Email', $message);
-   
-   if($sent_message){
-    echo 'message sent';
-   } else{
-    echo 'sent failure';
-   }
-   
-   }
+   $message = 'Lorain County Community College!';
+   wp_mail('jquerin@lorainccc.edu', 'LCCC New for', $message);
+   remove_filter( 'wp_mail_content_type', 'lc_change_mail_type' );
+  //}
+
+ }
+ add_action( 'publish_mylccc_email', array( $this, 'lc_send_email' ), 10, 2 );
+}
+
 
 }
 
-$lc_email_notify_plugin = new lc_email_notify();*/
+$lc_email_notify_plugin = new lc_email_notify();
 
 
 ?>
