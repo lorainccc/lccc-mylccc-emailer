@@ -225,11 +225,11 @@ function lc_send_email( $post_id ){
 
    
    //$subject = 'TEST -- ' . $post_title . ' -- TEST';
-   wp_mail('lmartin@lorainccc.edu', $post_title, $message);
+   wp_mail('jquerin@lorainccc.edu', $post_title, $message);
    remove_filter( 'wp_mail_content_type', 'lc_change_mail_type' );
    remove_filter( 'wp_mail_from_name', 'lc_change_from_name' );
   }
  }
 
- add_action( 'save_post', 'lc_send_email' );
+ add_action( 'publish_mylccc_email', 'lc_send_email' );
  
